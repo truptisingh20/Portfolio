@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-Level Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('tiru.jpg') no-repeat center center/cover;
+            position: relative;
+            background-attachment: fixed;
+            z-index: -1;
+            animation: heroAnimation 1.5s ease-out forwards;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #00bcd4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease-in-out;
+        }
+
+        header nav ul li a:hover {
+            color: #00bcd4;
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        #about {
+            padding: 100px 50px;
+            text-align: center;
+            background-color: #222;
+            color: #fff;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #00bcd4;
+        }
+
+        #about p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .project-card {
+            background-color: #222;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 188, 212, 0.5);
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            transform-style: preserve-3d;
+            height: 300px;
+            width: 100%;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
+            border-radius: 15px;
+        }
+
+        .project-card .project-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05) rotateY(15deg);
+        }
+
+        .project-card:hover .project-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 50px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            color: #00bcd4;
+            margin-bottom: 30px;
+        }
+
+        /* Modern Contact Form */
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #444;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 2s ease-out 0.5s forwards;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-field input, .form-field textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #666;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .form-field input:focus, .form-field textarea:focus {
+            background-color: #00bcd4;
+            outline: none;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.1);
+            background-color: #0288d1;
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #00bcd4;
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>Hi, I'm Trupti Singh</h1>
+    <p class="subtitle">Web Developer & Designer</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I'm a passionate web developer with expertise in creating dynamic and engaging websites. 
+        I specialize in front-end development, and I strive to create seamless user experiences 
+        through clean, well-organized code and modern design principles.
+    </p>
+</section>
+
+<section id="projects" class="projects-section">
+    <h2>My Projects</h2>
+    <div class="projects-container">
+        <div class="project-card">
+            <img src="gurukul.png" alt="Project 1">
+            <div class="project-info">
+                <h3>Project One</h3>
+                <p>Gurukul is an advanced online learning platform designed specifically for Class 11 & 12 students to help them excel in their academics. It provides a one-stop solution for students preparing for board exams, competitive exams, and beyond.</p>
+                <button>View Project</button>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="Chatbot.png" alt="Project 2">
+            <div class="project-info">
+                <h3>Project Two</h3>
+                <p>Guru Nirdesh is an AI-powered chatbot designed to assist students with their learning journey by providing instant answers, study guidance, and personalized support. Whether you need help with complex concepts, exam preparation, or quick revisions, Guru nirdesh is here to make studying smarter and easier!</p>
+                <button>View Project</button>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="Landing.png" alt="Project 3">
+            <div class="project-info">
+                <h3>Project Three</h3>
+                <p>HYPEVERSE is a next-gen digital fashion website designed to bring futuristic, trendy, and streetwear styles to life. Built for Gen Z and fashion enthusiasts, this platform offers an immersive shopping experience with dynamic animations, interactive hover effects, and smooth scrolling features that make browsing as exciting as the outfits themselves.</p>
+                <button>View Project</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2>Contact Me</h2>
+
+    <!-- Contact Form Container -->
+    <div class="contact-form-container">
+        <form class="contact-form">
+            <div class="form-field">
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-field">
+                <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-field">
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com" class="fab fa-facebook-f" title="Facebook"></a>
+        <a href="https://www.twitter.com" class="fab fa-twitter" title="Twitter"></a>
+        <a href="https://www.linkedin.com" class="fab fa-linkedin-in" title="LinkedIn"></a>
+        <a href="https://www.github.com" class="fab fa-github" title="GitHub"></a>
+    </div>
+</section>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>
+
